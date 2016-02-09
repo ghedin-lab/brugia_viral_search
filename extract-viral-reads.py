@@ -13,4 +13,18 @@ with open("kraken.translate.out", "rb") as kraken:
 		else:
 			v[l[0]] = "nv"
 
-with open
+with open("all-unmapped.r1.fastq", "rb") as f:
+	with open("all-unmapped.r1.viral.fastq", "w") as out:
+		for record in SeqIO.parse(f, "fastq"):
+			if record.id in v and v[record.id] == "v":
+				out.write(record.format("fastq"))
+			else:
+				out.write(record.format("fastq"))
+
+with open("all-unmapped.r2.fastq", "rb") as f:
+	with open("all-unmapped.r2.viral.fastq", "w") as out:
+		for record in SeqIO.parse(f, "fastq"):
+			if record.id in v and v[record.id] == "v":
+				out.write(record.format("fastq"))
+			else:
+				out.write(record.format("fastq"))
