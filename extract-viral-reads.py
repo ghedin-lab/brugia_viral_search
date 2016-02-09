@@ -10,8 +10,13 @@ with open("kraken.translate.out", "rb") as kraken:
 		l = line.split("\t")
 		if 'Viruses' in l[1] and 'phiX' not in l[1]:
 			v[l[0]] = "v"
-		else:
-			v[l[0]] = "nv"
+			print line
+			
+with open("kraken.translate.out", "rb") as kraken:
+	for line in kraken:
+		l = line.split("\t")
+		v[l[1]] = "u"
+		
 
 with open("all-unmapped.r1.fastq", "rb") as f:
 	with open("all-unmapped.r1.viral.fastq", "w") as out:
