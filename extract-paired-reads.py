@@ -16,7 +16,7 @@ with open(sys.argv[1],"rb") as r1:
 with open(sys.argv[2],"rb") as r2:
 	for record in SeqIO.parse(r2,'fastq'):
 		m = re.search('(^.+)/2', record.id)
-		if m.group(1) in segs:
+		if m.group(1) in seqs:
 			seqs[m.group(1)]["r2"] = record.format("fastq")
 		else:
 			seqs[m.group(1)] = dict()
@@ -25,11 +25,11 @@ with open(sys.argv[2],"rb") as r2:
 			
 
 with open(sys.argv[3], "w") as r1, open(sys.argv[3], "w") as r2, open(sys.argv[3], "w") as se:
-	for name in segs:
-		if segs[name]["r1"] == "None":
-			se.write(segs[name]["r1"])
-		elif segs[name]["r2"] == "None":
-			se.write(segs[name]["r2"])
+	for name in seqs:
+		if seqs[name]["r1"] == "None":
+			se.write(seqs[name]["r1"])
+		elif seqs[name]["r2"] == "None":
+			se.write(seqs[name]["r2"])
 		else:
-			r1.write(segs[name]["r1"])
-			r2.write(segs[name]["r2"])
+			r1.write(seqs[name]["r1"])
+			r2.write(seqs[name]["r2"])
