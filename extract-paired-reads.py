@@ -15,7 +15,7 @@ with open(sys.argv[1],"rb") as r1:
 
 with open(sys.argv[2],"rb") as r2:
 	for record in SeqIO.parse(r2,'fastq'):
-		m = re.search('(^.+)/1', record.id)
+		m = re.search('(^.+)/2', record.id)
 		if m.group(1) in segs:
 			seqs[m.group(1)]["r2"] = record.format("fastq")
 		else:
